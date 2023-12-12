@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="modal-dialog" style="width: 500px;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div>
+                <p class="text fs-3">Введите параметры</p>
+            </div>
+        </div>
+        <form id="query" action="" method="post"></form>
+        <div class="modal-body">
+            {% if error %}
+                <p class="text fs-3" style="color: red">{{ error }}</p>
+            {% endif %}
+            {% for key in parameters.keys() %}
+                <label for="{{ key }}" class="d-flex aligns-items-left">{{ parameters[key]['translate'] }}</label>
+                <input type="{{ parameters[key]['value'] }}" class="form-control" name="{{ key }}" id="{{ key }}"
+                       form="query">
+            {% endfor %}
+        </div>
+        <div class="modal-footer">
+            <form action="{{ url_for('blueprint_report.report_menu', report_id=report_id) }}" target="_self">
+                <button class="btn btn-outline-dark">Вернуться назад</button>
+            </form>
+            <input type="reset" class="btn btn-outline-danger" value="Очистить" form="query">
+            <input type="submit" class="btn btn-primary" value="Отправить" form="query">
+        </div>
+    </div>
+</div>
+</body>
+</html>

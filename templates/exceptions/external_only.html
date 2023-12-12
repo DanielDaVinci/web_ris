@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block index %}
+    <div class="row d-flex shadow"
+         style="background: white; width: 700px; height: auto; margin: auto; border-radius: 10px;">
+        <img src="../../static/img/img_3.png" style="width: 200px; height: auto; margin: auto"/>
+        <p class="text fw-bold fs-1 text-center">Для продожения войдите в личный аккаунт пользователя</p>
+        <form id="auth" action="{{ url_for('blueprint_auth.start_auth') }}" target="_self"></form>
+        <button type="submit" form="auth" class="btn btn-success fs-3 fw-bold"
+                style="align-self: center; background: #37B866; border-radius: 8px">Войти
+        </button>
+    </div>
+{% endblock %}

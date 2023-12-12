@@ -1,0 +1,37 @@
+<div class="row shadow"
+     style="background: white; width: 700px; height: 225px; padding: 10px; margin: 10px; border-radius: 10px;">
+    <div class="col-9">
+        <p class="text fs-1 fw-bold">{{ flight['flight_id'] }}</p>
+        <div class="row" style="margin-left: 50px">
+            <div class="d-flex flex-row align-items-center">
+                <div style="text-align: center; padding: 0; margin: 10px">
+                    <p class="text fs-3"
+                       style="text-align: center; padding: 0; margin: 0">{{ flight['departure_time'] }}</p>
+                    <p class="text fs-5"
+                       style="text-align: center; padding: 0; margin: 0">{{ flight['departure_date'] }}</p>
+                    <p class="text fs-5"
+                       style="text-align: center; padding: 0; margin: 0">{{ flight['departure_airport'] }}</p>
+                </div>
+                <hr style="width: 150px; color: #2C3959; opacity: 1; border-radius: 5px" size="10px"/>
+                <div style="text-align: center; padding: 0; margin: 10px">
+                    <p class="text fs-3"
+                       style="text-align: center; padding: 0; margin: 0">{{ flight['arrival_time'] }}</p>
+                    <p class="text fs-5"
+                       style="text-align: center; padding: 0; margin: 0">{{ flight['arrival_date'] }}</p>
+                    <p class="text fs-5"
+                       style="text-align: center; padding: 0; margin: 0">{{ flight['arrival_airport'] }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-3 border-start align-items-center justify-content-center" style="position: relative">
+        <p class="text fs-3 fw-bold" style="text-align: center; position: relative; top: 25%">{{ flight['price'] }} ₽</p>
+        <form id="buy"
+              action="{{ url_for('blueprint_market.registration_ticket', schedule_id = flight['schedule_id']) }}"
+              method="get" target="_self"></form>
+        <button class="btn fs-3" style="width: 90%; position: absolute; bottom: 0; right: 5%; left: 5%;
+        background: #37B866; color: white; border-radius: 10px" form="buy">
+            Купить
+        </button>
+    </div>
+</div>

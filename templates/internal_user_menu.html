@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block index %}
+    <div style="width: 500px; background: white; border-radius: 10px; margin: auto">
+        <div class="modal-header">
+            <p class="text fs-3 text-center">Панель внутреннего пользователя</p>
+        </div>
+        <div class="modal-body">
+            {% if 'blueprint_market' in access_list %}
+                <form action="{{ url_for('blueprint_market.market_index') }}" target="_self">
+                    <button type="submit" class="btn btn-primary" style="margin: 10px">Найти и купить билет</button>
+                </form>
+            {% endif %}
+            {% if 'blueprint_query' in access_list %}
+                <form action="{{ url_for('blueprint_query.query_index') }}" target="_self">
+                    <button type="submit" class="btn btn-primary" style="margin: 10px">Работа с запросами</button>
+                </form>
+            {% endif %}
+            {% if 'blueprint_report' in access_list %}
+                <form action="{{ url_for('blueprint_report.index') }}" target="_self">
+                    <button type="submit" class="btn btn-primary" style="margin: 10px">Работа с отчетами</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

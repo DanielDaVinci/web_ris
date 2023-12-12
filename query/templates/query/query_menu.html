@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск товаров</title>
+    <link href="{{ url_for('static', filename='static.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Меню выбора запросов</h2>
+        </div>
+        <div class="modal-body">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col" width="50">#</th>
+                    <th scope="col">Легкие запросы</th>
+                    <th scope="col">Сложные запросы</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>
+                        <form id="query" action="{{ url_for('blueprint_query.query_light_1') }}" target="_self">
+                            <button class="btn btn-primary" type="submit">
+                                Показать все сведения о рейсах, номера которых начинаются с XXX
+                            </button>
+                        </form>
+                    </td>
+                    <td>
+                        <form id="query" action="{{ url_for('blueprint_query.query_hard_1') }}" target="_self">
+                            <button class="btn btn-primary" type="submit">
+                                Отчет о продаже билетов по дате XXX в виде:
+                                Название аэропорта вылета, аэропорта прибытия, общее количество проданных билетов, общая
+                                цена билетов
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>
+                        <form id="query" action="{{ url_for('blueprint_query.query_light_2') }}" target="_self">
+                            <button class="btn btn-primary" type="submit">
+                                Показать все сведения о билетах, проданных по дате XXX
+                            </button>
+                        </form>
+                    </td>
+                    <td>
+                        <form id="query" action="{{ url_for('blueprint_query.query_hard_2') }}" target="_self">
+                            <button class="btn btn-primary" type="submit">
+                                Создать отчет о продаже билетов для вылета из каждого аэропорта по дате XXX в виде:
+                                Название аэропорта, месяц вылета, общее число проданных билетов
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>
+                        <form id="query" action="{{ url_for('blueprint_query.query_light_3') }}" target="_self">
+                            <button class="btn btn-primary" type="submit">
+                                Показать все сведения о билетах, проданных за последние XXX дней
+                            </button>
+                        </form>
+                    </td>
+                    <td>
+                        <form id="query" action="{{ url_for('blueprint_query.query_hard_3') }}" target="_self">
+                            <button class="btn btn-primary" type="submit">
+                                Покажите все сведенья о пассажирах,
+                                покупавших самые дорогие билеты на рейс ХХХ по дате XXX
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <form action="/">
+                <button class="btn btn-outline-dark">Вернуться назад</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Base_menu</title>
+    <link href="static/main.css" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<center>
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 500px">
+            <div class="modal-header">
+                <h2>{{ report_name }}</h2>
+            </div>
+            <div class="modal-body">
+                {% if 'blueprint_report' in access_list or 'blueprint_report.report_create' in access_list %}
+                    <form action="{{ url_for('blueprint_report.report_create', report_id=report_id) }}" target="_self">
+                        <button type="submit" class="btn btn-primary" style="margin-top: 10px">Создать отчет</button>
+                    </form>
+                {% endif %}
+                {% if 'blueprint_report' in access_list or 'blueprint_report.report_view' in access_list %}
+                    <form action="{{ url_for('blueprint_report.report_view', report_id=report_id) }}" target="_self">
+                        <button type="submit" class="btn btn-primary" style="margin-top: 10px">Посмотреть отчет</button>
+                    </form>
+                {% endif %}
+            </div>
+            <div class="modal-footer">
+                <form action="{{ url_for('blueprint_report.index') }}" target="_self">
+                    <button type="submit" class="btn btn-outline-dark">Вернуться назад</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</center>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "admin": [
+    "blueprint_market",
+    "blueprint_report",
+    "blueprint_query"
+  ],
+  "director": [
+    "blueprint_report"
+  ],
+  "cashier": [
+    "blueprint_market",
+    "blueprint_query"
+  ],
+  "external": [
+    "blueprint_market"
+  ]
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="{{ url_for('static', filename='static.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="modal-dialog" style="width: 500px;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1>Вы вышли из системы</h1>
+        </div>
+        <div class="modal-footer">
+            <form action="/" target="_self">
+                <button class="btn btn-outline-dark">В меню</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

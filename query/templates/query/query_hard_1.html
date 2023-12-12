@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск товара</title>
+    <link href="{{url_for('static', filename='static.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{url_for('static', filename='bootstrap.css')}}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="modal-dialog" style="width: 500px">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Отчет о продаже билетов</h3>
+        </div>
+        <form id="query" action="" method=post></form>
+        <div class="modal-body">
+            {% if wrong %}
+            <h4 style="color: red">Нет результатов</h4>
+            {% endif %}
+            <label for="date" class="d-flex aligns-items-left">Дата продажи билетов</label>
+            <input type="date" class="form-control" name="date" id="date" form="query">
+        </div>
+        <div class="modal-footer">
+            <form action="{{ url_for('blueprint_query.query_index') }}" target="_self">
+                <button class="btn btn-outline-dark">Вернуться назад</button>
+            </form>
+            <input type="reset" class="btn btn-outline-danger" value="Очистить" form="query">
+            <input type="submit" class="btn btn-primary" value="Отправить" form="query">
+        </div>
+    </div>
+</div>
+</body>
+</html>
