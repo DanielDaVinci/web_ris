@@ -2,32 +2,37 @@
 
 {% block index %}
     <div style="margin-left: 100px; margin-right: 100px">
-        <p class="text fw-bold" style="color: white; font-size: 100px;">Твой подход к путешествиям</p>
+        <p class="text fw-bold" style="color: white; font-size: 100px;">Добро пожаловать в агентство</p>
         <form id="search" action="" method="post"></form>
         <div>
             <div class="row">
-                <div class="col-3" style="padding-left: 0; padding-right: 0">
-                    <input type="text"
-                           class="form-control form-control-lg fs-5" style="border-radius: 10px 0 0 10px"
-                           placeholder="Откуда" name="departure_city" id="departure_city" form="search"
-                           value="{{ search_parameters['departure_city'] }}">
+                <div class="row">
+                    <div class="col-3" style="padding-left: 0; padding-right: 0">
+                        <input type="text"
+                               class="form-control form-control-lg fs-5" style="border-radius: 10px 0 0 10px"
+                               placeholder="Откуда" name="departure_city" id="departure_city" form="search"
+                               value="{{ search_parameters['departure_city'] }}">
+                    </div>
+                    <div class="col-3" style="padding-left: 0; padding-right: 0">
+                        <input type="text"
+                               class="form-control form-control-lg" style="border-radius: 0 10px 10px 0"
+                               placeholder="Куда" name="arrival_city" id="arrival_city" form="search"
+                               value="{{ search_parameters['arrival_city'] }}">
+                    </div>
                 </div>
-                <div class="col-3" style="padding-left: 0; padding-right: 0">
-                    <input type="text"
-                           class="form-control form-control-lg" style="border-radius: 0 0 0 0"
-                           placeholder="Куда" name="arrival_city" id="arrival_city" form="search"
-                           value="{{ search_parameters['arrival_city'] }}">
-                </div>
-                <div class="col-2" style="padding-left: 0; padding-right: 0">
-                    <input type="date"
-                           class="form-control form-control-lg" style="border-radius: 0 0 0 0"
-                           placeholder="Дата полета" name="flight_time" id="flight_time" form="search"
-                           value="{{ search_parameters['flight_time'] }}">
-                </div>
-                <div class="col-2" style="padding-left: 0; padding-right: 0">
-                    <button type="submit" form="search" class="btn btn-success fs-5 fw-bold w-100 h-100"
-                            style="background: #37B866; border-radius: 0 10px 10px 0">Найти билет
-                    </button>
+                <br/>
+                <div class="row">
+                    <div class="col-2" style="padding-left: 0; padding-right: 0">
+                        <input type="date"
+                               class="form-control form-control-lg" style="border-radius: 10px 0 0 10px"
+                               placeholder="Дата полета" name="flight_time" id="flight_time" form="search"
+                               value="{{ search_parameters['flight_time'] }}">
+                    </div>
+                    <div class="col-2" style="padding-left: 0; padding-right: 0">
+                        <button type="submit" form="search" class="btn btn-success fs-5 fw-bold w-100 h-100"
+                                style="background: #37B866; border-radius: 0 10px 10px 0">Найти билет
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
