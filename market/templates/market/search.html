@@ -19,7 +19,7 @@
                                value="{{ search_parameters['arrival_city'] }}">
                     </div>
                     <div class="col-2" style="padding: 0; margin: 0 5px 0 5px">
-                        <input type="date"
+                        <input type="date" min="{{ min_date }}"
                                class="form-control form-control-lg" style="border-radius: 10px"
                                placeholder="Дата полета" name="flight_time" id="flight_time" form="search"
                                value="{{ search_parameters['flight_time'] }}">
@@ -33,13 +33,27 @@
             </div>
         </div>
     </div>
-    <div style="height: auto; width: 100%; background: #F2F2F2; padding: 50px 0px 50px 150px">
-        {% if flights %}
-            {% for flight in flights %}
-                {% include 'market/flight_item.html' %}
-            {% endfor %}
-        {% else %}
-            <img src="../../../static/img/img.png" style="display: block; margin: 0 auto 0">
-        {% endif %}
+    <div style="height: auto; width: 100%; background: #F2F2F2; padding: 50px 0px 50px 150px; display: flex; flex-direction: row; flex-wrap: nowrap">
+        <div style="width: auto; height: auto">
+            {% if flights %}
+                {% for flight in flights %}
+                    {% include 'market/flight_item.html' %}
+                {% endfor %}
+            {% else %}
+                <img src="../../../static/img/img.png" style="display: block; margin: 0 auto 0">
+            {% endif %}
+        </div>
+        <div style="width: auto; height: min-content; background: white; border-radius: 10px;">
+            {% if basket %}
+                <p class="text text-center fs-2 fw-bold" style="color: black">Корзина</p>
+                {% for flight in basket %}
+                    {% include 'market/basket_flight_item.html' %}
+                {% endfor %}
+                <form id="buy" action="{{ url_for('blueprint_market.registration_ticket') }}" method="get" target="_self"/>
+                <button class="btn fs-3" style="background: #37B866; color: white; border-radius: 10px; margin: 10px; width: 150px" form="buy">
+                    Купить
+                </button>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

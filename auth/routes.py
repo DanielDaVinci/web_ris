@@ -28,8 +28,11 @@ def start_auth():
                 session['user_group'] = user_info['user_group']
                 session.permanent = True
 
-                if session.get('buy', None):
-                    return redirect(url_for('blueprint_market.registration_ticket', schedule_id=session['buy']['schedule_id']))
+                if session.get('last_endpoint', None):
+                    bp_url = session['last_endpoint']
+                    session.pop('last_endpoint')
+
+                    return redirect(url_for(bp_url))
                 else:
                     return redirect(url_for('menu_choice'))
             else:

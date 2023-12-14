@@ -45,6 +45,7 @@ def group_required(f):
 def external_validation(config):
     session['last_endpoint'] = request.endpoint
     endpoint_app = request.endpoint.split('.')[0]
+
     user_id = session.get('user_id', None)
     user_group = session.get('user_group', None)
     if user_id and (user_group is None or user_group == 'external'):

@@ -2,78 +2,85 @@
 
 {% block index %}
     <div style="height: auto; width: 100%; background: #F2F2F2; padding: 25px 0px 50px 150px">
-        {% if flight %}
-            <form id="back" action="{{ url_for('blueprint_market.market_search') }}" target="_self"></form>
-            <button class="btn btn-outline-primary fs-6" style="border-radius: 10px; margin: 10px"
-                    form="back">
-                Вернуться
-            </button>
-            <div class="row shadow"
-                 style="background: white; width: 700px; height: 225px; padding: 10px; margin: 10px; border-radius: 10px;">
-                <div class="d-flex">
-                    <p class="text fs-1 fw-bold">{{ flight['flight_id'] }}</p>
-                    <div class="row" style="margin: auto">
-                        <div class="d-flex flex-row align-items-center">
-                            <div style="text-align: center; padding: 0; margin: 10px">
-                                <p class="text fs-3"
-                                   style="text-align: center; padding: 0; margin: 0">{{ flight['departure_time'] }}</p>
-                                <p class="text fs-5"
-                                   style="text-align: center; padding: 0; margin: 0">{{ flight['departure_date'] }}</p>
-                                <p class="text fs-5"
-                                   style="text-align: center; padding: 0; margin: 0">{{ flight['departure_airport'] }}</p>
-                            </div>
-                            <hr style="width: 150px; color: #2C3959; opacity: 1; border-radius: 5px" size="10px"/>
-                            <div style="text-align: center; padding: 0; margin: 10px">
-                                <p class="text fs-3"
-                                   style="text-align: center; padding: 0; margin: 0">{{ flight['arrival_time'] }}</p>
-                                <p class="text fs-5"
-                                   style="text-align: center; padding: 0; margin: 0">{{ flight['arrival_date'] }}</p>
-                                <p class="text fs-5"
-                                   style="text-align: center; padding: 0; margin: 0">{{ flight['arrival_airport'] }}</p>
+        <form id="back" action="{{ url_for('blueprint_market.market_search') }}" target="_self"></form>
+        <button class="btn btn-outline-primary fs-6" style="border-radius: 10px; margin: 10px"
+                form="back">
+            Вернуться
+        </button>
+        <form id="buy" action="" method="post" target="_self"></form>
+        {% for flight in basket %}
+            {% for index in range(flight['count']) %}
+                <div class="row shadow"
+                     style="background: white; width: 700px; height: 225px; padding: 10px; margin: 10px; border-radius: 10px;">
+                    <div class="d-flex">
+                        <p class="text fs-1 fw-bold">{{ flight['flight_id'] }}</p>
+                        <div class="row" style="margin: auto">
+                            <div class="d-flex flex-row align-items-center">
+                                <div style="text-align: center; padding: 0; margin: 10px">
+                                    <p class="text fs-3"
+                                       style="text-align: center; padding: 0; margin: 0">{{ flight['departure_time'] }}</p>
+                                    <p class="text fs-5"
+                                       style="text-align: center; padding: 0; margin: 0">{{ flight['departure_date'] }}</p>
+                                    <p class="text fs-5"
+                                       style="text-align: center; padding: 0; margin: 0">{{ flight['departure_airport'] }}</p>
+                                </div>
+                                <hr style="width: 150px; color: #2C3959; opacity: 1; border-radius: 5px" size="10px"/>
+                                <div style="text-align: center; padding: 0; margin: 10px">
+                                    <p class="text fs-3"
+                                       style="text-align: center; padding: 0; margin: 0">{{ flight['arrival_time'] }}</p>
+                                    <p class="text fs-5"
+                                       style="text-align: center; padding: 0; margin: 0">{{ flight['arrival_date'] }}</p>
+                                    <p class="text fs-5"
+                                       style="text-align: center; padding: 0; margin: 0">{{ flight['arrival_airport'] }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row d-flex shadow"
-                 style="background: white; width: 700px; height: auto; padding: 10px; margin: 10px; border-radius: 10px;">
-                <form id="buy" action="" method="post" target="_self"></form>
-                <div class="d-flex flex-row">
-                    <input type="text"
-                           class="form-control form-control-lg" style="border-radius: 10px; margin: 10px"
-                           placeholder="Имя" name="name" value="{{ buy_parameters['name'] }}" id="name" form="buy">
-                    <input type="text"
-                           class="form-control form-control-lg" style="border-radius: 10px; margin: 10px"
-                           placeholder="Фамилия" name="surname" value="{{ buy_parameters['surname'] }}" id="surname"
-                           form="buy">
-                </div>
-                <div class="d-flex flex-row">
-                    <input type="number" maxlength="10"
-                           class="form-control form-control-lg" style="border-radius: 10px; margin: 10px"
-                           placeholder="Серия и номер" name="passport_info"
-                           value="{{ buy_parameters['passport_info'] }}" id="passport_info" form="buy">
-                </div>
-            </div>
-            <div class="row d-flex shadow"
-                 style="background: white; width: 700px; height: 100px; padding: 10px; margin: 10px; border-radius: 10px;">
-                <div class="row d-flex">
-                    <div class="col-3 d-flex align-items-center justify-content-center">
-                        <p class="text fs-3 fw-bold" style="padding: 0; margin: 0">Стоимость:</p>
+                <div class="row d-flex shadow"
+                     style="background: white; width: 700px; height: auto; padding: 10px; margin: 10px; border-radius: 10px;">
+                    <div class="d-flex flex-row">
+                        <input type="text"
+                               class="form-control form-control-lg" style="border-radius: 10px; margin: 10px"
+                               placeholder="Имя"
+                               name="name.{{ flight['schedule_id'] }}.{{ index }}"
+                                {#                               value="{{ parameters[flight['schedule_id']][i_count]['surname'] if parameters else '' }}"#}
+                               form="buy">
+                        <input type="text"
+                               class="form-control form-control-lg" style="border-radius: 10px; margin: 10px"
+                               placeholder="Фамилия"
+                               name="surname.{{ flight['schedule_id'] }}.{{ index }}"
+                                {#                               value="{{ parameters[flight['schedule_id']][i_count]['surname'] if parameters else '' }}"#}
+                               form="buy">
                     </div>
-                    <div class="col-5 d-flex align-items-center">
-                        <p class="text fs-3 fw-bold"
-                           style="color: #37B866; text-align: left; padding: 0; margin: 0">{{ flight['price'] }} ₽</p>
-                    </div>
-                    <div class="col-4 d-flex flex-row-reverse align-items-center">
-                        <button class="btn fs-3" style="background: #37B866; color: white; border-radius: 10px;"
-                                form="buy">
-                            Купить
-                        </button>
+                    <div class="d-flex flex-row">
+                        <input type="number" maxlength="10"
+                               class="form-control form-control-lg" style="border-radius: 10px; margin: 10px"
+                               placeholder="Серия и номер"
+                                {#                               value="{{ parameters[flight['schedule_id']][i_count]['passport_info'] if parameters else '' }}"#}
+                               name="passport_info.{{ flight['schedule_id'] }}.{{ index }}"
+                               form="buy">
                     </div>
                 </div>
+            {% endfor %}
+        {% endfor %}
+        <div class="row d-flex shadow"
+             style="background: white; width: 700px; height: 100px; padding: 10px; margin: 10px; border-radius: 10px;">
+            <div class="row d-flex">
+                <div class="col-3 d-flex align-items-center justify-content-center">
+                    <p class="text fs-3 fw-bold" style="padding: 0; margin: 0">Стоимость:</p>
+                </div>
+                <div class="col-5 d-flex align-items-center">
+                    <p class="text fs-3 fw-bold"
+                       style="color: #37B866; text-align: left; padding: 0; margin: 0">{{ total_price }} ₽</p>
+                </div>
+                <div class="col-4 d-flex flex-row-reverse align-items-center">
+                    <button class="btn fs-3" style="background: #37B866; color: white; border-radius: 10px;"
+                            form="buy">
+                        Купить
+                    </button>
+                </div>
             </div>
-        {% else %}
-            <img src="../../../static/img/img.png" style="display: block; margin: 0 auto 0">
-        {% endif %}
+        </div>
     </div>
 {% endblock %}

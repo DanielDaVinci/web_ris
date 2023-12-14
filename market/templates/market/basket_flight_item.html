@@ -1,0 +1,38 @@
+<div class="row shadow"
+     style="background: white; width: 500px; height: 200px; padding: 10px; margin: 10px; border-radius: 10px;">
+    <div class="col-9">
+        <p class="text fs-2 fw-bold">{{ flight['flight_id'] }}</p>
+        <div class="row">
+            <div class="d-flex flex-row align-items-center">
+                <div style="text-align: center; padding: 0; margin: 10px">
+                    <p class="text fs-4"
+                       style="text-align: center; padding: 0; margin: 0">{{ flight['departure_time'] }}</p>
+                    <p class="text fs-6"
+                       style="text-align: center; padding: 0; margin: 0">{{ flight['departure_date'] }}</p>
+                    <p class="text fs-6"
+                       style="text-align: center; padding: 0; margin: 0">{{ flight['departure_airport'] }}</p>
+                </div>
+                <hr style="width: 100px; color: #2C3959; opacity: 1; border-radius: 5px" size="10px"/>
+                <div style="text-align: center; padding: 0; margin: 10px">
+                    <p class="text fs-5"
+                       style="text-align: center; padding: 0; margin: 0">{{ flight['arrival_time'] }}</p>
+                    <p class="text fs-6"
+                       style="text-align: center; padding: 0; margin: 0">{{ flight['arrival_date'] }}</p>
+                    <p class="text fs-6"
+                       style="text-align: center; padding: 0; margin: 0">{{ flight['arrival_airport'] }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-3 border-start align-items-center justify-content-center" style="position: relative">
+        <div style="margin-left: auto; margin-right: auto; position: relative; top: 20%">
+            <p class="text fs-5 fw-bold" style="text-align: center;">{{ flight['price'] }}₽</p>
+            <p class="text fs-6 fw-bold" style="text-align: center;">Количество: {{ flight['count'] }}</p>
+        </div>
+        <button class="btn fs-5" style="width: 90%; position: absolute; bottom: 0; right: 5%; left: 5%;
+                background: #FF5061; color: white; border-radius: 10px" form="search" name="schedule_id"
+                value="remove.{{ flight['schedule_id'] }}">
+            Убрать
+        </button>
+    </div>
+</div>
