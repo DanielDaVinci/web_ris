@@ -18,7 +18,7 @@
                 <h4 style="color: red">Нет результатов</h4>
             {% endif %}
             <label for="date" class="d-flex aligns-items-left">Дата продажи билетов</label>
-            <input type="date" class="form-control" name="date" id="date" form="query">
+            <input type="date" max="{{ max_date }}" class="form-control" name="date" id="date" form="query">
         </div>
         <div class="modal-footer">
             <form action="{{ url_for('blueprint_query.query_index') }}" target="_self">

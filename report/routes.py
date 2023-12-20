@@ -52,6 +52,7 @@ def report_create(report_id):
         parameters = session['reports'][report_id]['parameters']
 
         return render_template('report/input_form.html',
+                               title='Создание отчета',
                                report_id=report_id,
                                parameters=parameters)
     else:
@@ -65,6 +66,7 @@ def report_create(report_id):
 
         if result:
             return render_template('report/input_form.html',
+                                   title='Создание отчета',
                                    report_id=report_id, parameters=parameters,
                                    error='Отчет уже существует')
 
@@ -73,6 +75,7 @@ def report_create(report_id):
 
         if not result:
             return render_template('report/input_form.html',
+                                   title='Создание отчета',
                                    report_id=report_id, parameters=parameters,
                                    error='Отчет не может быть создан')
 
@@ -98,6 +101,7 @@ def report_view(report_id):
         parameters = session['reports'][report_id]['parameters']
 
         return render_template('report/input_form.html',
+                               title='Просмотр отчета',
                                report_id=report_id,
                                parameters=parameters)
     else:
