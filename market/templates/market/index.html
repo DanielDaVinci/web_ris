@@ -19,7 +19,7 @@
                            value="{{ search_parameters['arrival_city'] }}">
                 </div>
                 <div class="col-2" style="padding-left: 0; padding-right: 0">
-                    <input type="date"
+                    <input type="date" min="{{ min_date }}"
                            class="form-control form-control-lg" style="border-radius: 0 0 0 0"
                            placeholder="Дата полета" name="flight_time" id="flight_time" form="search"
                            value="{{ search_parameters['flight_time'] }}">

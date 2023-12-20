@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Base_menu</title>
-    <link href="static/main.css" rel="stylesheet" type="text/css">
+    <title>Работа с отчетами</title>
     <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet" type="text/css"/>
 </head>
-<body>
+<body style="background: #2C3959">
 <center>
     <div class="modal-dialog">
         <div class="modal-content" style="width: 500px">
@@ -15,9 +14,23 @@
             </div>
             <div class="modal-body">
                 {% for report_id in reports.keys() %}
-                    <form action="{{ url_for('blueprint_report.report_menu', report_id=report_id) }}" target="_self">
-                        <button type="submit" class="btn btn-primary" style="margin-top: 10px">{{ reports[report_id]['name'] }}</button>
-                    </form>
+                    <form id="create.{{ report_id }}" action="{{ url_for('blueprint_report.report_create', report_id=report_id) }}"
+                          target="_self"></form>
+                    <form id="view.{{ report_id }}" action="{{ url_for('blueprint_report.report_view', report_id=report_id) }}"
+                          target="_self"></form>
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <p class="col-5 text fs-5 fw-bold">{{ reports[report_id]['name'] }}</p>
+                        {% if 'blueprint_report.report_create' in access_list %}
+                            <button type="submit" class="btn col-3 btn-primary" style="margin: 10px" form="create.{{ report_id }}">
+                                Создать
+                            </button>
+                        {% endif %}
+                        {% if 'blueprint_report.report_view' in access_list %}
+                            <button type="submit" class="btn col-3 btn-primary" style="margin: 10px;" form="view.{{ report_id }}">
+                                Посмотреть
+                            </button>
+                        {% endif %}
+                    </div>
                 {% endfor %}
             </div>
             <div class="modal-footer">

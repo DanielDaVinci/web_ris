@@ -44,20 +44,20 @@
                                class="form-control form-control-lg" style="border-radius: 10px; margin: 10px"
                                placeholder="Имя"
                                name="name.{{ flight['schedule_id'] }}.{{ index }}"
-                                {#                               value="{{ parameters[flight['schedule_id']][i_count]['surname'] if parameters else '' }}"#}
+                               value="{{ parameters[flight['schedule_id']][index]['name'] if parameters else '' }}"
                                form="buy">
                         <input type="text"
                                class="form-control form-control-lg" style="border-radius: 10px; margin: 10px"
                                placeholder="Фамилия"
                                name="surname.{{ flight['schedule_id'] }}.{{ index }}"
-                                {#                               value="{{ parameters[flight['schedule_id']][i_count]['surname'] if parameters else '' }}"#}
+                               value="{{ parameters[flight['schedule_id']][index]['surname'] if parameters else '' }}"
                                form="buy">
                     </div>
                     <div class="d-flex flex-row">
-                        <input type="number" maxlength="10"
+                        <input type="number" min="1000000000" max="9999999999"
                                class="form-control form-control-lg" style="border-radius: 10px; margin: 10px"
                                placeholder="Серия и номер"
-                                {#                               value="{{ parameters[flight['schedule_id']][i_count]['passport_info'] if parameters else '' }}"#}
+                               value="{{ parameters[flight['schedule_id']][index]['passport_info'] if parameters else '' }}"
                                name="passport_info.{{ flight['schedule_id'] }}.{{ index }}"
                                form="buy">
                     </div>

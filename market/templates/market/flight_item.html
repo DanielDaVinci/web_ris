@@ -26,6 +26,7 @@
     </div>
     <div class="col-3 border-start align-items-center justify-content-center" style="position: relative">
         <p class="text fs-3 fw-bold" style="text-align: center; position: relative; top: 25%">{{ flight['price'] }} ₽</p>
+        <label class="text fw-bold" style="text-align: left; position: relative; top: 30%; font-size: 15px; color: #6F6F6F">Осталось: {{ flight['seats_left'] }} мест</label>
         <button class="btn fs-3" style="width: 90%; position: absolute; bottom: 0; right: 5%; left: 5%;
                 background: #37B866; color: white; border-radius: 10px" form="search" name="schedule_id" value="add.{{ flight['schedule_id'] }}">
             Добавить

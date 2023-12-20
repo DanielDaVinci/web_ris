@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Создание отчета</title>
     <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet" type="text/css"/>
 </head>
-<body>
+<body style="background: #2C3959">
 <div class="modal-dialog" style="width: 500px;">
     <div class="modal-content">
         <div class="modal-header">
@@ -19,12 +20,12 @@
             {% endif %}
             {% for key in parameters.keys() %}
                 <label for="{{ key }}" class="d-flex aligns-items-left">{{ parameters[key]['translate'] }}</label>
-                <input type="{{ parameters[key]['value'] }}" class="form-control" name="{{ key }}" id="{{ key }}"
+                <input type="{{ parameters[key]['value'] }}" {{ parameters[key]['style'] }} class="form-control" name="{{ key }}" id="{{ key }}"
                        form="query">
             {% endfor %}
         </div>
         <div class="modal-footer">
-            <form action="{{ url_for('blueprint_report.report_menu', report_id=report_id) }}" target="_self">
+            <form action="{{ url_for('blueprint_report.index', report_id=report_id) }}" target="_self">
                 <button class="btn btn-outline-dark">Вернуться назад</button>
             </form>
             <input type="reset" class="btn btn-outline-danger" value="Очистить" form="query">

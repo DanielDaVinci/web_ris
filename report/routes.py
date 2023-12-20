@@ -8,6 +8,7 @@ from flask import (
 )
 
 from access import group_required
+from cache.wrapper import fetch_from_cache
 from database.operations import select, call_procedure
 from database.sql_provider import SQLProvider
 
@@ -25,26 +26,17 @@ provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))
 @group_required
 def index():
     db_config = current_app.config['db_config']
+    cache_config = current_app.config['cache_config']
+    cached_func = fetch_from_cache('all_reports', cache_config)(select)
 
     sql = provider.get('get_all_reports.sql')
-    result = select(db_config, sql)
+    result = cached_func(db_config, sql)
 
     session['reports'] = {row['proc_name']: json.loads(row['data']) for row in result}
-
-    return render_template('report/index.html', reports=session['reports'])
-
-
-@blueprint_report.route('/<report_id>')
-@group_required
-def report_menu(report_id):
-    if not (session.get('reports', None) and session['reports'].get(report_id, None)):
-        return redirect(url_for('blueprint_report.index'))
-
-    report_name = session['reports'][report_id]['name']
     access_list = current_app.config['access_config'].get(session.get('user_group'), [])
 
-    return render_template('report/chosen_report.html',
-                           report_id=report_id, report_name=report_name,
+    return render_template('report/index.html',
+                           reports=session['reports'],
                            access_list=access_list)
 
 
@@ -65,10 +57,11 @@ def report_create(report_id):
     else:
         parameters = session['reports'][report_id]['parameters']
         form = {key: request.form.get(key, None) for key in parameters.keys()}
-
         table = session['reports'][report_id]['table']
         sql = provider.get(table + '.sql', **form)
         result = select(db_config, sql)
+
+        print(result)
 
         if result:
             return render_template('report/input_form.html',
@@ -88,6 +81,7 @@ def report_create(report_id):
         result = select(db_config, sql)
 
         return render_template('report/dynamic.html',
+                               name=session['reports'][report_id]['name'],
                                report_id=report_id, table_items=result,
                                back_site=request.endpoint)
 
@@ -120,5 +114,6 @@ def report_view(report_id):
                                    error='Отчета с заданными параметрами не существует')
 
         return render_template('report/dynamic.html',
+                               name=session['reports'][report_id]['name'],
                                report_id=report_id, table_items=result,
                                back_site=request.endpoint)

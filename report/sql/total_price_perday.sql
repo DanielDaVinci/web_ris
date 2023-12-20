@@ -1,5 +1,7 @@
-SELECT flight_id as 'Номер рейса',
-       sale_date as 'Дата продажи',
-       sum_price as 'Общий доход'
+SELECT flight_id  as 'Номер рейса',
+       sale_year  as 'Год',
+       sale_month as 'Месяц',
+       sum_price  as 'Общий доход'
 FROM total_price_perday
-WHERE sale_date = '$required_date';
+WHERE sale_year = '$p1_required_year'
+  AND sale_month = '$p2_required_month';

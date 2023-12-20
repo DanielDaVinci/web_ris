@@ -6,4 +6,4 @@ INSERT INTO ticket(name, surname, passport_info, price, sale_date, flight_schedu
            '$price',
            NOW(),
            '$schedule_id',
-           '$user_id')
+           $user_id)

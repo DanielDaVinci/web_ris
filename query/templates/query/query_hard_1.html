@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Поиск товара</title>
-    <link href="{{url_for('static', filename='static.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{url_for('static', filename='bootstrap.css')}}" rel="stylesheet" type="text/css"/>
+    <title>Сложный запрос #1</title>
+    <link href="{{ url_for('static', filename='static.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet" type="text/css"/>
 </head>
-<body>
+<body style="background: #2C3959">
 <div class="modal-dialog" style="width: 500px">
     <div class="modal-content">
         <div class="modal-header">
@@ -15,7 +15,7 @@
         <form id="query" action="" method=post></form>
         <div class="modal-body">
             {% if wrong %}
-            <h4 style="color: red">Нет результатов</h4>
+                <h4 style="color: red">Нет результатов</h4>
             {% endif %}
             <label for="date" class="d-flex aligns-items-left">Дата продажи билетов</label>
             <input type="date" class="form-control" name="date" id="date" form="query">

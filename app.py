@@ -28,6 +28,7 @@ def menu_choice():
     if group and group != 'external':
         access_list = app.config['access_config'].get(session.get('user_group'), [])
         return render_template('internal_user_menu.html',
+                               title='Меню внутреннего пользователя',
                                is_logged=session.get('user_group', None),
                                access_list=access_list)
     else:

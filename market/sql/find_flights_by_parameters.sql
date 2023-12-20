@@ -8,12 +8,12 @@ SELECT flight_schedule.id                      AS schedule_id,
        TIME_FORMAT(arrival_time, "%h:%m")      AS arrival_time,
        arrival_city,
        arrival_airport,
-       price
+       flight.price,
+       max_seats - COUNT(flight_schedule.id)   AS seats_left
 FROM flight_schedule
          JOIN flight ON flight_schedule.flight_id = flight.id
+         JOIN ticket ON flight_schedule.id = ticket.flight_schedule_id
 WHERE departure_city = '$departure_city'
   AND arrival_city = '$arrival_city'
   AND DATE(departure_time) = '$flight_time'
-# WHERE departure_city = 'Москва'
-#   AND arrival_city = 'Питер'
-#   AND DATE(departure_time) = '2023-12-04'
+GROUP BY flight_schedule.id

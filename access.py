@@ -14,22 +14,15 @@ def login_required(func):
 
 
 def group_validation(config: dict) -> bool:
+    session['last_endpoint'] = request.endpoint
     endpoint_app = request.endpoint.split('.')[0]
+
     if 'user_group' in session:
         user_group = session['user_group']
         if user_group in config and endpoint_app in config[user_group]:
             return True
     return False
 
-# def group_validation(config: dict) -> bool:
-#     endpoint_app = request.endpoint
-#     if 'user_group' in session:
-#         user_group = session['user_group']
-#         if user_group in config:
-#             access = list(map(lambda x: endpoint_app in x, config[user_group]))
-#             print(user_group, access)
-#             return True in access
-#     return False
 
 def group_required(f):
     @wraps(f)

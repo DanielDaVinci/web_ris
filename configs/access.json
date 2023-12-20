@@ -1,11 +1,13 @@
 {
   "admin": [
-    "blueprint_market",
     "blueprint_report",
+    "blueprint_report.report_create",
+    "blueprint_report.report_view",
     "blueprint_query"
   ],
   "director": [
-    "blueprint_report"
+    "blueprint_report",
+    "blueprint_report.report_view"
   ],
   "cashier": [
     "blueprint_market",

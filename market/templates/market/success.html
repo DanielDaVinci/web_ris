@@ -4,34 +4,40 @@
     <div class="row d-flex shadow"
          style="background: #F2F2F2; width: 700px; height: auto; margin: auto; border-radius: 10px;">
         <img src="../../../static/img/img_2.png" style="width: 200px; height: auto; margin: auto"/>
-        <p class="text fw-bold fs-1 text-center">Поздравляем с покупкой билета!</p>
-        <p class="text fw-bold fs-1 text-center">Не забудьте про свой рейс:</p>
-{#        <div class="row shadow"#}
-{#             style="background: white; width: 600px; height: 225px; padding: 10px; margin: 10px auto 10px auto; border-radius: 10px;">#}
-{#            <div class="d-flex">#}
-{#                <p class="text fs-1 fw-bold">{{ flight['flight_id'] }}</p>#}
-{#                <div class="row" style="margin: auto">#}
-{#                    <div class="d-flex flex-row align-items-center">#}
-{#                        <div style="text-align: center; padding: 0; margin: 10px">#}
-{#                            <p class="text fs-3"#}
-{#                               style="text-align: center; padding: 0; margin: 0">{{ flight['departure_time'] }}</p>#}
-{#                            <p class="text fs-5"#}
-{#                               style="text-align: center; padding: 0; margin: 0">{{ flight['departure_date'] }}</p>#}
-{#                            <p class="text fs-5"#}
-{#                               style="text-align: center; padding: 0; margin: 0">{{ flight['departure_airport'] }}</p>#}
-{#                        </div>#}
-{#                        <hr style="width: 150px; color: #2C3959; opacity: 1; border-radius: 5px" size="10px"/>#}
-{#                        <div style="text-align: center; padding: 0; margin: 10px">#}
-{#                            <p class="text fs-3"#}
-{#                               style="text-align: center; padding: 0; margin: 0">{{ flight['arrival_time'] }}</p>#}
-{#                            <p class="text fs-5"#}
-{#                               style="text-align: center; padding: 0; margin: 0">{{ flight['arrival_date'] }}</p>#}
-{#                            <p class="text fs-5"#}
-{#                               style="text-align: center; padding: 0; margin: 0">{{ flight['arrival_airport'] }}</p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
+        <p class="text fw-bold fs-1 text-center">Поздравляем с покупкой!</p>
+        <div class="row d-flex" style="margin: 0">
+            <p class="text col-9 fw-bold fs-3">Общий чек на сумму:</p>
+            <p class="text col-3 fw-bold fs-3" style="color: #37B866;">{{ sum_price }} ₽</p>
+        </div>
+        <p class="text fw-bold fs-1 text-center">Не забудьте про свои рейсы:</p>
+        {% for flight in basket %}
+            <div class="row shadow"
+                 style="background: white; width: 600px; height: 225px; padding: 10px; margin: 10px auto 10px auto; border-radius: 10px;">
+                <div class="d-flex">
+                    <p class="text fs-1 fw-bold">{{ flight['flight_id'] }}</p>
+                    <div class="row" style="margin: auto">
+                        <div class="d-flex flex-row align-items-center">
+                            <div style="text-align: center; padding: 0; margin: 10px">
+                                <p class="text fs-3"
+                                   style="text-align: center; padding: 0; margin: 0">{{ flight['departure_time'] }}</p>
+                                <p class="text fs-5"
+                                   style="text-align: center; padding: 0; margin: 0">{{ flight['departure_date'] }}</p>
+                                <p class="text fs-5"
+                                   style="text-align: center; padding: 0; margin: 0">{{ flight['departure_airport'] }}</p>
+                            </div>
+                            <hr style="width: 150px; color: #2C3959; opacity: 1; border-radius: 5px" size="10px"/>
+                            <div style="text-align: center; padding: 0; margin: 10px">
+                                <p class="text fs-3"
+                                   style="text-align: center; padding: 0; margin: 0">{{ flight['arrival_time'] }}</p>
+                                <p class="text fs-5"
+                                   style="text-align: center; padding: 0; margin: 0">{{ flight['arrival_date'] }}</p>
+                                <p class="text fs-5"
+                                   style="text-align: center; padding: 0; margin: 0">{{ flight['arrival_airport'] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}

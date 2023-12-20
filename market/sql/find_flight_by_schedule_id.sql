@@ -8,7 +8,10 @@ SELECT flight_schedule.id                      AS schedule_id,
        TIME_FORMAT(arrival_time, "%h:%m")      AS arrival_time,
        arrival_city,
        arrival_airport,
-       price
+       flight.price,
+       max_seats - COUNT(flight_schedule.id)   AS seats_left
 FROM flight_schedule
          JOIN flight ON flight_schedule.flight_id = flight.id
+         JOIN ticket ON flight_schedule.id = ticket.flight_schedule_id
 WHERE flight_schedule.id = '$schedule_id'
+GROUP BY flight_schedule.id

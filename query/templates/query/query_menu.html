@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Поиск товаров</title>
+    <title>Меню выбора запросов</title>
     <link href="{{ url_for('static', filename='static.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet" type="text/css"/>
 </head>
-<body>
+<body style="background: #2C3959">
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
@@ -16,7 +16,7 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th scope="col" width="50">#</th>
+                    <th scope="col" width="60">Номер</th>
                     <th scope="col">Легкие запросы</th>
                     <th scope="col">Сложные запросы</th>
                 </tr>
@@ -25,18 +25,16 @@
                 <tr>
                     <th scope="row">1</th>
                     <td>
-                        <form id="query" action="{{ url_for('blueprint_query.query_light_1') }}" target="_self">
+                        <form action="{{ url_for('blueprint_query.query_light_1') }}" target="_self">
                             <button class="btn btn-primary" type="submit">
                                 Показать все сведения о рейсах, номера которых начинаются с XXX
                             </button>
                         </form>
                     </td>
-                    <td>
-                        <form id="query" action="{{ url_for('blueprint_query.query_hard_1') }}" target="_self">
+                    <td class="text-center align-middle">
+                        <form action="{{ url_for('blueprint_query.query_hard_1') }}" target="_self">
                             <button class="btn btn-primary" type="submit">
-                                Отчет о продаже билетов по дате XXX в виде:
-                                Название аэропорта вылета, аэропорта прибытия, общее количество проданных билетов, общая
-                                цена билетов
+                                Показать все сведения о продажах билетов по дате XXX
                             </button>
                         </form>
                     </td>
@@ -44,17 +42,16 @@
                 <tr>
                     <th scope="row">2</th>
                     <td>
-                        <form id="query" action="{{ url_for('blueprint_query.query_light_2') }}" target="_self">
+                        <form action="{{ url_for('blueprint_query.query_light_2') }}" target="_self">
                             <button class="btn btn-primary" type="submit">
                                 Показать все сведения о билетах, проданных по дате XXX
                             </button>
                         </form>
                     </td>
                     <td>
-                        <form id="query" action="{{ url_for('blueprint_query.query_hard_2') }}" target="_self">
+                        <form action="{{ url_for('blueprint_query.query_hard_2') }}" target="_self">
                             <button class="btn btn-primary" type="submit">
-                                Создать отчет о продаже билетов для вылета из каждого аэропорта по дате XXX в виде:
-                                Название аэропорта, месяц вылета, общее число проданных билетов
+                                Показать все сведения о продаже билетов для вылета из каждого аэропорта по дате XXX
                             </button>
                         </form>
                     </td>
@@ -62,16 +59,16 @@
                 <tr>
                     <th scope="row">3</th>
                     <td>
-                        <form id="query" action="{{ url_for('blueprint_query.query_light_3') }}" target="_self">
+                        <form action="{{ url_for('blueprint_query.query_light_3') }}" target="_self">
                             <button class="btn btn-primary" type="submit">
                                 Показать все сведения о билетах, проданных за последние XXX дней
                             </button>
                         </form>
                     </td>
                     <td>
-                        <form id="query" action="{{ url_for('blueprint_query.query_hard_3') }}" target="_self">
+                        <form action="{{ url_for('blueprint_query.query_hard_3') }}" target="_self">
                             <button class="btn btn-primary" type="submit">
-                                Покажите все сведенья о пассажирах,
+                                Показать все сведения о пассажирах,
                                 покупавших самые дорогие билеты на рейс ХХХ по дате XXX
                             </button>
                         </form>
